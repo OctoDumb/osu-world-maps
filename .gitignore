@@ -1,5 +1,6 @@
 node_modules/
 cache/
+out/
 temp/
-test*
+test.*
 *.sql

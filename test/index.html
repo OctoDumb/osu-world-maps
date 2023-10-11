@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+    integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+    crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+    integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+    crossorigin=""></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #map {
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .leaflet-container {
+      background: #303030;
+    }
+
+    .leaflet-tile {
+      filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) brightness(0.7);
+    }
+
+    .info {
+      padding: 6px 8px;
+      font: 14px/16px Arial, Helvetica, sans-serif;
+      background: white;
+      background: rgba(255,255,255,0.8);
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      border-radius: 5px;
+    }
+    .info h4 {
+      margin: 0 0 5px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+</body>
+<script>
+    var map = L.map('map', {
+      center: [0, 0],
+      zoom: 4,
+    });
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      minZoom: 3,
+    }).addTo(map);
+
+    var info = L.control();
+
+    info.onAdd = function(_map) {
+      this._div = L.DomUtil.create('div', 'info');
+      this.update();
+      return this._div;
+    };
+
+    info.update = function(props) {
+      if(props)
+        this._div.innerHTML = props.id;
+      else
+        this._div.innerHTML = `<h5>Hover over a region</h5>`;
+    }
+
+    info.addTo(map);
+
+    fetch(`/${location.search.slice(1)}.json`)
+      .then(r => r.json())
+      .then(r => {
+        var geojson = L.geoJson(r, {
+          style: f => ({
+            fillColor: "#4444cc",
+            weight: 2,
+            opacity: 0.8,
+            color: 'white',
+            dashArray: '3',
+            fillOpacity: 0.3,
+          }),
+          onEachFeature: (f, l) => {
+            l.on({
+              mouseover: (e) => {
+                e.target.setStyle({
+                  weight: 2,
+                  dashArray: '',
+                  fillOpacity: 0.8,
+                });
+
+                e.target.bringToFront();
+
+                info.update(f.properties);
+              },
+              mouseout: (e) => {
+                geojson.resetStyle(e.target);
+
+                info.update();
+              },
+              click: (e) => {
+                map.fitBounds(e.target.getBounds());
+              }
+            });
+          },
+        });
+
+        geojson.addTo(map);
+      })
+</script>
+</html>
