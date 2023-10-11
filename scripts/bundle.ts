@@ -32,7 +32,7 @@ const provider = new NominatimProvider();
 
     console.log(`• 🏭 Processing finished in ${end - start}ms`);
 
-    fs.writeFileSync(path.join(outputPath, `${country.code}.json`), JSON.stringify(data.toString()));
+    fs.writeFileSync(path.join(outputPath, `${country.code}.json`), data);
     fs.writeFileSync(path.join(outputPath, `${country.code}.sql`), sql);
 
     {
