@@ -16,11 +16,7 @@ export default abstract class Country {
 
   protected simplifyFactor = 0.3;
 
-  private regions: CountryRegion[] = [];
-
-  protected addRegions(...regions: CountryRegion[]) {
-    this.regions.push(...regions);
-  }
+  protected abstract regions: CountryRegion[];
 
   /**
    * @returns A GeoJSON object and an SQL query to add 
