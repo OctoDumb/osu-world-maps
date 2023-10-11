@@ -12,7 +12,7 @@ if(!fs.existsSync(outputPath))
 
 const args = process.argv.slice(2);
 
-const countriesToBundle: Country[] = args.length ? args.map(code => countries.find(c => c.code == code)!) : countries;
+const countriesToBundle: Country[] = args.length ? args.map(code => countries.find(c => c.code == code)!).filter(c => c) : countries;
 
 if(!countriesToBundle.length) {
   throw new Error("No countries to bundle");
