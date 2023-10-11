@@ -19,9 +19,9 @@ export default abstract class Country {
   protected abstract regions: CountryRegion[];
 
   /**
-   * @returns A GeoJSON object and an SQL query to add 
+   * @returns A GeoJSON object Buffer and an SQL query to add 
    */
-  async bundle(provider: NominatimProvider): Promise<[any, string]> {
+  async bundle(provider: NominatimProvider): Promise<[Buffer, string]> {
     if(!fs.existsSync(path.join(process.cwd(), "temp")))
       fs.mkdirSync(path.join(process.cwd(), "temp"));
 
@@ -52,7 +52,7 @@ export default abstract class Country {
 
     let geojson = fs.readFileSync(simplifiedPath);
 
-    return [JSON.parse(geojson.toString()), sql];
+    return [geojson, sql];
   }
 
   async extractNames(language: string) {

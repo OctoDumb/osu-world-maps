@@ -1,21 +1,53 @@
 import fs from "fs";
+import path from "path";
+import zlib from "zlib";
 
 import NominatimProvider from "../src/NominatimProvider";
 import countries from "../src/countries";
+import Country from "../src/Country";
 
-const code = "UK";
+const outputPath = path.join(process.cwd(), "out");
+if(!fs.existsSync(outputPath))
+  fs.mkdirSync(outputPath);
 
-const country = countries.find(c => c.code == code);
+const args = process.argv.slice(2);
 
-if(!country) {
-  throw new Error("Country not found");
+const countriesToBundle: Country[] = args.length ? args.map(code => countries.find(c => c.code == code)!) : countries;
+
+if(!countriesToBundle.length) {
+  throw new Error("No countries to bundle");
 }
 
 const provider = new NominatimProvider();
 
 (async() => {
-  let [data, sql] = await country.bundle(provider);
+  for(let country of countriesToBundle) {
+    console.log(`🔍 Bundling ${country.code}`);
 
-  fs.writeFileSync("./test.js", `const DATA = ${JSON.stringify(data)}`);
-  fs.writeFileSync("./query.sql", sql);
+    const start = Date.now();
+
+    let [data, sql] = await country.bundle(provider);
+
+    const end = Date.now()
+
+    console.log(`• 🏭 Processing finished in ${end - start}ms`);
+
+    fs.writeFileSync(path.join(outputPath, `${country.code}.json`), JSON.stringify(data.toString()));
+    fs.writeFileSync(path.join(outputPath, `${country.code}.sql`), sql);
+
+    {
+      let start = Date.now();
+      let gzip = zlib.gzipSync(data);
+      let end = Date.now();
+      console.log(`• 📚 Compressed using gzip in ${end - start}ms`);
+      fs.writeFileSync(path.join(outputPath, `${country.code}.json.gz`), gzip);
+    }
+    {
+      let start = Date.now();
+      let brotli = zlib.brotliCompressSync(data);
+      let end = Date.now();
+      console.log(`• 📚 Compressed using brotli in ${end - start}ms`);
+      fs.writeFileSync(path.join(outputPath, `${country.code}.json.br`), brotli);
+    }
+  }
 })();
