@@ -21,7 +21,6 @@ export default class NominatimProvider {
   }
 
   async get(id: number): Promise<Nominatim> {
-
     if(this.cached.includes(id)) {
       return new Nominatim(JSON.parse(fs.readFileSync(path.join(CACHE_PATH, `${id}.json`)).toString()));
     }

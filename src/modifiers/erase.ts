@@ -36,7 +36,8 @@ export default class EraseModifier implements IModifier {
 
     let erased = JSON.parse(fs.readFileSync(erasedPath).toString());
 
-    base.geometry = erased.features[0].geometry
+    // -erase returns a FeatureCollection
+    base.geometry = erased.features[0].geometry;
 
     return base;
   }
