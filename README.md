@@ -8,6 +8,10 @@ Map bundling system for [osu! World](https://osuworld.octo.moe)
 * [Removing parts of regions](/src/modifiers/erase.ts)
 * [Defining custom IDs](/src/modifiers/customId.ts)
 
+### Requirements
+
+* Node (probably 16+ idk node sucks anyway)
+
 ### Contributing
 
 You are welcome to help us by contributing new countries. Just keep in mind that, since we only use [Nominatim IDs](https://nominatim.openstreetmap.org/ui/search.html), they all require comments.
