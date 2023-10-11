@@ -6,6 +6,7 @@ import { CountryRegion } from "../Country";
 import { Feature } from "../Nominatim";
 import NominatimProvider from "../NominatimProvider";
 import Mapshaper from "../util/Mapshaper";
+import { cloneDeep } from "lodash";
 
 export default class EraseModifier implements IModifier {
   constructor(
@@ -21,6 +22,8 @@ export default class EraseModifier implements IModifier {
       ? (await provider.get(this.erase)).toFeature()
       : await this.erase.build(provider);
 
+    let base = cloneDeep(from);
+
     let fromPath = path.join(process.cwd(), "temp", "1.json");
     let erasePath = path.join(process.cwd(), "temp", "2.json");
 
@@ -33,6 +36,8 @@ export default class EraseModifier implements IModifier {
 
     let erased = JSON.parse(fs.readFileSync(erasedPath).toString());
 
-    return erased.features[0];
+    base.geometry = erased.features[0].geometry
+
+    return base;
   }
 }
