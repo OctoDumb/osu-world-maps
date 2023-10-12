@@ -3,26 +3,27 @@ import path from "path";
 import zlib from "zlib";
 
 import NominatimProvider from "../src/NominatimProvider";
-import countries from "../src/countries";
+import getCountries from "../src/countries";
 import Country from "../src/Country";
 
-const outputPath = path.join(process.cwd(), "out");
-if(!fs.existsSync(outputPath))
-  fs.mkdirSync(outputPath);
+  const outputPath = path.join(process.cwd(), "out");
+  if(!fs.existsSync(outputPath))
+    fs.mkdirSync(outputPath);
 
-const args = process.argv.slice(2);
-
-const countriesToBundle: Country[] = args.length ? args.map(code => countries.find(c => c.code == code)!).filter(c => c) : countries;
-
-if(!countriesToBundle.length) {
-  throw new Error("No countries to bundle");
-}
-
-const provider = new NominatimProvider();
+  const args = process.argv.slice(2);
 
 (async() => {
+  const countries = await getCountries();
+  const countriesToBundle: Country[] = args.length ? args.map(code => countries.find(c => c.code == code)!).filter(c => c) : countries;
+
+  if(!countriesToBundle.length) {
+    throw new Error("No countries to bundle");
+  }
+
+  const provider = new NominatimProvider();
+
   for(let country of countriesToBundle) {
-    console.log(`🔍 Bundling ${country.code}`);
+    console.log(`🔍 Bundling ${country.constructor.name} [${country.code}]`);
 
     const start = Date.now();
 

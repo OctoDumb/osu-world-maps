@@ -18,8 +18,6 @@ You are welcome to help us by contributing new countries. Just keep in mind that
 
 ##### Testing
 
-> ⚠ Don't forget to add the country [to the list](/src/countries/index.ts)
-
 1. Bundle the country with `npm run bundle <code>`
 2. Start the server with `npm run serve`
 3. Open `http://localhost:7891/?<code>`
