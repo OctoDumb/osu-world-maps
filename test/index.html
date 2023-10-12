@@ -74,7 +74,7 @@
 
     info.addTo(map);
 
-    fetch(`/${location.search.slice(1)}.json`)
+    fetch(`/json/${location.search.slice(1)}.json`)
       .then(r => r.json())
       .then(r => {
         var geojson = L.geoJson(r, {
