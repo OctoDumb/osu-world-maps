@@ -6,11 +6,11 @@ import NominatimProvider from "../src/NominatimProvider";
 import getCountries from "../src/countries";
 import Country from "../src/Country";
 
-  const outputPath = path.join(process.cwd(), "out");
-  if(!fs.existsSync(outputPath))
-    fs.mkdirSync(outputPath);
+const outputPath = path.join(process.cwd(), "out");
+if(!fs.existsSync(outputPath))
+  fs.mkdirSync(outputPath);
 
-  const args = process.argv.slice(2);
+const args = process.argv.slice(2);
 
 (async() => {
   const countries = await getCountries();
