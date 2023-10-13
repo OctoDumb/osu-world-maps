@@ -31,12 +31,15 @@ export default abstract class Country {
     };
 
     for(let region of this.regions) {
-      let feature;
+      let feature: Feature;
       if(typeof region == "number") {
         let nominatim = await provider.get(region);
         feature = nominatim.toFeature();
       } else {
         feature = await region.build(provider);
+      }
+      if(feature.properties.id == "id") {
+        console.log(`⚠ ${region} is missing an ID`);
       }
       data.features.push(feature);
     }
