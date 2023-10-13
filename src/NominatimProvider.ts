@@ -30,7 +30,7 @@ export default class NominatimProvider {
 
   async download(id: number): Promise<any> {
     await this.timeout.wait();
-    this.timeout.lock(1000);
+    this.timeout.lock(600);
 
     console.log(`Downloading R${id}`);
 
