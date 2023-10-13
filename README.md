@@ -22,4 +22,5 @@ You are welcome to help us by contributing new countries. Just keep in mind that
 2. Start the server with `npm run serve`
 3. Open `http://localhost:7891/?<code>`
 
-You can hover over a region to check its ID
+Hover over a region to check its ID.
+Press `c` to copy the lines for `center` and `zoom`.

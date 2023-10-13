@@ -49,6 +49,8 @@
   <div id="map"></div>
 </body>
 <script>
+    const country = location.search.slice(1);
+
     var map = L.map('map', {
       center: [0, 0],
       zoom: 4,
@@ -56,6 +58,12 @@
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       minZoom: 3,
     }).addTo(map);
+
+    document.addEventListener("keypress", ev => {
+      if(ev.repeat) return;
+      const center = map.getCenter();
+      navigator.clipboard.writeText(`center: [number, number] = [${Math.round(center.lat * 10) / 10}, ${Math.round(center.lng * 10) / 10}];\nzoom = ${map.getZoom()};`);
+    });
 
     var info = L.control();
 
@@ -74,7 +82,7 @@
 
     info.addTo(map);
 
-    fetch(`/json/${location.search.slice(1)}.json`)
+    fetch(`/json/${country}.json`)
       .then(r => r.json())
       .then(r => {
         var geojson = L.geoJson(r, {
@@ -112,6 +120,21 @@
         });
 
         geojson.addTo(map);
-      })
+      });
+
+    fetch(`/sql/${country}.sql`)
+      .then(r => r.text())
+      .then(r => {
+        const REGEX = /\('(\w+)', '([-\d\.]+), ([-\d\.]+)', (\d+)\)/;
+        const match = r.split("\n")[0].match(REGEX);
+        const center = new L.LatLng(Number(match[2]), Number(match[3]));
+        const zoom = Number(match[4]);
+        if(zoom > 0) {
+          map.flyTo(center, zoom, {
+            animate: true,
+            duration: 0.5,
+          });
+        }
+      });
 </script>
 </html>
