@@ -125,7 +125,7 @@
     fetch(`/sql/${country}.sql`)
       .then(r => r.text())
       .then(r => {
-        const REGEX = /\('(\w+)', '([-\d\.]+), ([-\d\.]+)', (\d+)\)/;
+        const REGEX = /\('(\w+)', '{([-\d\.]+), ([-\d\.]+)}', (\d+)\)/;
         const match = r.split("\n")[0].match(REGEX);
         const center = new L.LatLng(Number(match[2]), Number(match[3]));
         const zoom = Number(match[4]);
