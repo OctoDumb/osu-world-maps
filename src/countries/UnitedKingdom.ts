@@ -231,35 +231,7 @@ export default class UnitedKingdom extends Country {
         "GB-CLW"
       ),
       "Clwyd"
-    ),
-
-    /*
-    297287, // Conwy
-    192442, // Denbighshire
-    198566, // Flintshire
-    297286, // Gwynedd
-    298793, // Isle of Anglesey
-    // North Powys (?)
-    137981, // Wrexham
-
-    2750598, // Blaenau Gwent
-    99774, // Bridgend
-    2750677, // Caerphilly
-    1625787, // Cardiff
-    57534, // Carmarthenshire
-    77904, // Ceredigion
-    2750939, // Merthyr Tydfil
-    358021, // Monmouthshire
-    89846, // Neath Port Talbot
-    335184, // Newport
-    57535, // Pembrokeshire
-    // South Powys (?)
-    2751428, // Rhondda Cynon Taff
-    87944, // Swansea
-    2750460, // Torfaen
-    103776, // Vale of Glamorgan
-    */
-    
+    ),    
 
     /* Northern Ireland */
 
