@@ -75,7 +75,7 @@
 
     info.update = function(props) {
       if(props)
-        this._div.innerHTML = props.id;
+        this._div.innerHTML = `${props.id} - ${props.name}`;
       else
         this._div.innerHTML = `<h5>Hover over a region</h5>`;
     }
