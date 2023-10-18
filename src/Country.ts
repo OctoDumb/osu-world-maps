@@ -45,7 +45,7 @@ export default abstract class Country {
     }
 
     let sql = `INSERT INTO "Country" (id, center, zoom) VALUES ('${this.code}', '{${this.center.join(', ')}}', ${this.zoom}) ON CONFLICT (id) DO UPDATE SET center = '{${this.center.join(', ')}}', zoom = ${this.zoom}\n`
-      + 'INSERT INTO "Region" (id, country_id) VALUES ' + data.features.map(f => `('${f.properties.id}', '${this.code}')`).join(', ');
+      + 'INSERT INTO "Region" (id, country_id) VALUES ' + data.features.map(f => `('${f.properties.id}', '${this.code}')`).join(', ') + ' ON CONFLICT DO NOTHING';
 
     const collectionPath = path.join(process.cwd(), "temp", "original.json");
     const simplifiedPath = path.join(process.cwd(), "temp", "simple.json");
