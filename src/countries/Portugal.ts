@@ -1,5 +1,5 @@
 import Country from "../Country";
-import CustomIdModifier from "../modifiers/customId";
+import CustomIdModifier from "../modifiers/CustomIdModifier";
 
 export default class Portugal extends Country {
   code = "PT";

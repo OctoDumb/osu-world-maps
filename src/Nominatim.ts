@@ -11,7 +11,7 @@ export type Feature = {
 export default class Nominatim {
   constructor(private data: any) {}
 
-  toFeature(): Feature {
+  public toFeature(): Feature {
     return {
       type: "Feature",
       geometry: this.data.geometry,

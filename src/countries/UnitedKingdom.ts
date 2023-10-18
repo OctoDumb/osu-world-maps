@@ -1,8 +1,8 @@
 import Country from "../Country";
-import CustomIdModifier from "../modifiers/customId";
-import CustomNameModifier from "../modifiers/customName";
-import EraseModifier from "../modifiers/erase";
-import JoinModifier from "../modifiers/join";
+import CustomIdModifier from "../modifiers/CustomIdModifier";
+import CustomNameModifier from "../modifiers/CustomNameModifier";
+import EraseModifier from "../modifiers/EraseModifier";
+import JoinModifier from "../modifiers/JoinModifier";
 
 export default class UnitedKingdom extends Country {
   code = "UK";
@@ -231,7 +231,7 @@ export default class UnitedKingdom extends Country {
         "GB-CLW"
       ),
       "Clwyd"
-    ),    
+    ),
 
     /* Northern Ireland */
 

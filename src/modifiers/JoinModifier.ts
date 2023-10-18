@@ -1,38 +1,39 @@
-import fs from "fs"; 
+import fs from "fs";
 import path from "path";
 
 import { cloneDeep } from "lodash";
 
-import IModifier from ".";
+import { Modifier } from "./Modifier";
 import { CountryRegion } from "../Country";
 import { Feature } from "../Nominatim";
-import NominatimProvider from "../NominatimProvider";
 import Mapshaper from "../util/Mapshaper";
 
-export default class JoinModifier implements IModifier {
+export default class JoinModifier extends Modifier {
   constructor(
-    private regions: CountryRegion[]
-  ) {}
+    private regions: CountryRegion[],
+  ) {
+    super();
+  }
 
-  async build(provider: NominatimProvider): Promise<Feature> {
+  public async build(): Promise<Feature> {
     let features = [];
     let paths = [];
 
     for(let i = 0; i < this.regions.length; i++) {
-      let region = this.regions[i];
-      let feature = typeof region == "number"
-        ? (await provider.get(region)).toFeature()
-        : await region.build(provider);
+      const region = this.regions[i];
+      const feature = await this.convertRegionParameterToFeature(region);
+
       features.push(feature);
+
       let p = path.join(process.cwd(), "temp", `${i+1}.json`);
       fs.writeFileSync(p, JSON.stringify(feature));
       paths.push(p);
     }
 
     let base = cloneDeep(features[0]);
-    
+
     let joinedPath = path.join(process.cwd(), "temp", "joined.json");
-    
+
     let a = await Mapshaper(`-i files=${paths.join(',')} combine-files merge-files -dissolve2 -o ${joinedPath}`);
 
     let joined = JSON.parse(fs.readFileSync(joinedPath).toString());

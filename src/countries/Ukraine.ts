@@ -1,5 +1,5 @@
 import Country from "../Country";
-import JoinModifier from "../modifiers/join";
+import JoinModifier from "../modifiers/JoinModifier";
 
 export default class Ukraine extends Country {
   code = "UA";

@@ -1,26 +1,24 @@
 import fs from "fs";
 import path from "path";
 
-import IModifier from ".";
+import { Modifier } from "./Modifier";
 import { CountryRegion } from "../Country";
 import { Feature } from "../Nominatim";
-import NominatimProvider from "../NominatimProvider";
+import NominatimService from "../NominatimService";
 import Mapshaper from "../util/Mapshaper";
 import { cloneDeep } from "lodash";
 
-export default class EraseModifier implements IModifier {
+export default class EraseModifier extends Modifier {
   constructor(
     private from: CountryRegion,
     private erase: CountryRegion,
-  ) {}
+  ) {
+    super();
+  }
 
-  async build(provider: NominatimProvider): Promise<Feature> {
-    let from = typeof this.from == "number"
-      ? (await provider.get(this.from)).toFeature()
-      : await this.from.build(provider);
-    let erase = typeof this.erase == "number"
-      ? (await provider.get(this.erase)).toFeature()
-      : await this.erase.build(provider);
+  public async build(): Promise<Feature> {
+    let from = await this.convertRegionParameterToFeature(this.from);
+    let erase = await this.convertRegionParameterToFeature(this.erase);
 
     let base = cloneDeep(from);
 

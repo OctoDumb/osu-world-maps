@@ -2,9 +2,9 @@ import fs from "fs";
 import path from "path";
 import zlib from "zlib";
 
-import NominatimProvider from "../src/NominatimProvider";
 import getCountries from "../src/countries";
 import Country from "../src/Country";
+import { measureTime } from "../src/util/TimeMeasure";
 
 const outputPath = path.join(process.cwd(), "out");
 if(!fs.existsSync(outputPath))
@@ -32,46 +32,39 @@ const args = process.argv.slice(2);
     throw new Error("No countries to bundle");
   }
 
-  const provider = new NominatimProvider();
-
   for(let country of countriesToBundle) {
     console.log(`🔍 Bundling ${country.constructor.name} [${country.code}]`);
 
-    const start = Date.now();
-
-    let [data, sql] = await country.bundle(provider);
-
-    let json: any = JSON.parse(data.toString());
     let locale: any = {};
     let missingNames: string[] = [];
-    for(let feature of json.features) {
-      if(!feature.properties.name)
-        missingNames.push(feature.properties.id);
-      else
-        locale[feature.properties.id] = feature.properties.name;
-    }
 
-    const end = Date.now()
+    const [processingDuration, [data, sql]] = await measureTime(async () => {
+      let [data, sql] = await country.bundle();
+      let json: any = JSON.parse(data.toString());
 
-    console.log(`• 🏭 Processing finished in ${end - start}ms`);
+      for (let feature of json.features) {
+        if(!feature.properties.name) {
+          missingNames.push(feature.properties.id);
+        } else {
+          locale[feature.properties.id] = feature.properties.name;
+        }
+      }
 
-    fs.writeFileSync(path.join(jsonPath, `${country.code}.json`), data);
-    fs.writeFileSync(path.join(sqlPath, `${country.code}.sql`), sql);
+      return [data, sql];
+    });
 
-    {
-      let start = Date.now();
-      let gzip = zlib.gzipSync(data);
-      let end = Date.now();
-      console.log(`• 📚 Compressed using gzip in ${end - start}ms`);
-      fs.writeFileSync(path.join(jsonPath, `${country.code}.json.gz`), gzip);
-    }
-    {
-      let start = Date.now();
-      let brotli = zlib.brotliCompressSync(data);
-      let end = Date.now();
-      console.log(`• 📚 Compressed using brotli in ${end - start}ms`);
-      fs.writeFileSync(path.join(jsonPath, `${country.code}.json.br`), brotli);
-    }
+    console.log(`• 🏭 Processing finished in ${processingDuration}ms`);
+
+    fs.writeFileSync(path.join(jsonPath, `${country.code}.json`), data!);
+    fs.writeFileSync(path.join(sqlPath, `${country.code}.sql`), sql!);
+
+    const [gzipDuration, gzip] = await measureTime(() => zlib.gzipSync(data));
+    console.log(`• 📚 Compressed using gzip in ${gzipDuration}ms`);
+    fs.writeFileSync(path.join(jsonPath, `${country.code}.json.gz`), gzip);
+
+    const [brotliDuration, brotli] = await measureTime(() => zlib.brotliCompressSync(data));
+    console.log(`• 📚 Compressed using brotli in ${brotliDuration}ms`);
+    fs.writeFileSync(path.join(jsonPath, `${country.code}.json.br`), brotli);
 
     fs.writeFileSync(path.join(localePath, `${country.code}.json`), JSON.stringify(locale, null, "\t"));
     if(missingNames.length)

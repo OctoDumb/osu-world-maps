@@ -1,6 +1,5 @@
-import { Feature } from "../Nominatim";
-import NominatimProvider from "../NominatimProvider";
-
-export default interface IModifier {
-  build(provider: NominatimProvider): Promise<Feature>
-}
+export * from "./Modifier";
+export * from "./CustomIdModifier";
+export * from "./CustomNameModifier";
+export * from "./EraseModifier";
+export * from "./JoinModifier";

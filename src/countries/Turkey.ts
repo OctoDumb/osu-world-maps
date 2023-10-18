@@ -1,7 +1,7 @@
 import Country from "../Country";
-import JoinModifier from "../modifiers/join";
-import CustomIdModifier from "../modifiers/customId";
-import CustomNameModifier from "../modifiers/customName";
+import JoinModifier from "../modifiers/JoinModifier";
+import CustomIdModifier from "../modifiers/CustomIdModifier";
+import CustomNameModifier from "../modifiers/CustomNameModifier";
 
 export default class Turkey extends Country {
   code = "TR";

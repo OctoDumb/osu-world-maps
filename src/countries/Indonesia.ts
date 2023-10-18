@@ -1,5 +1,5 @@
 import Country from "../Country";
-import CustomIdModifier from "../modifiers/customId";
+import CustomIdModifier from "../modifiers/CustomIdModifier";
 
 export default class Indonesia extends Country {
   code = "ID";
@@ -8,7 +8,7 @@ export default class Indonesia extends Country {
   zoom = 5;
 
   regions = [
-		2390836, // Aceh 
+		2390836, // Aceh
 		1615621, // Bali
 		3797243, // Bangka-Belitung Islands
 		2388356, // Banten
