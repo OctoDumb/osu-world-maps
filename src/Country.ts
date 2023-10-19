@@ -1,10 +1,10 @@
 import fs from "fs";
 import path from "path";
 
-import NominatimProvider from "./NominatimProvider";
+import NominatimService from "./NominatimService";
 import Mapshaper from "./util/Mapshaper";
-import IModifier from "./modifiers";
 import { Feature } from "./Nominatim";
+import { IModifier } from "./modifiers";
 
 export type CountryRegion = number | IModifier;
 
@@ -19,11 +19,13 @@ export default abstract class Country {
   protected abstract regions: CountryRegion[];
 
   /**
-   * @returns A GeoJSON object Buffer and an SQL query to add 
+   * @returns A GeoJSON object Buffer and an SQL query to add
    */
-  async bundle(provider: NominatimProvider): Promise<[Buffer, string]> {
+  async bundle(): Promise<[Buffer, string]> {
     if(!fs.existsSync(path.join(process.cwd(), "temp")))
       fs.mkdirSync(path.join(process.cwd(), "temp"));
+
+    const provider = NominatimService.instance;
 
     let data = {
       type: "FeatureCollection",
@@ -36,7 +38,7 @@ export default abstract class Country {
         let nominatim = await provider.get(region);
         feature = nominatim.toFeature();
       } else {
-        feature = await region.build(provider);
+        feature = await region.build();
       }
       if(feature.properties.id == "id") {
         console.log(`⚠ ${region} is missing an ID`);
@@ -59,6 +61,6 @@ export default abstract class Country {
   }
 
   async extractNames(language: string) {
-    
+
   }
 }

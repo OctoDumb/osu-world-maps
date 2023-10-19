@@ -8,10 +8,20 @@ import Nominatim from "./Nominatim";
 // Assuming execution from project's root directory
 const CACHE_PATH = path.join(process.cwd(), "cache");
 
-export default class NominatimProvider {
+export default class NominatimService {
   private cached: number[];
 
   private timeout = new TimeoutLock();
+
+  private static _instance: NominatimService;
+
+  public static get instance() {
+    if (!this._instance) {
+      this._instance = new NominatimService();
+    }
+
+    return this._instance;
+  }
 
   constructor(path: string = CACHE_PATH) {
     if(!fs.existsSync(path))
@@ -25,10 +35,12 @@ export default class NominatimProvider {
       return new Nominatim(JSON.parse(fs.readFileSync(path.join(CACHE_PATH, `${id}.json`)).toString()));
     }
 
-    return new Nominatim(await this.download(id));
+    const data = await this.download(id);
+
+    return new Nominatim(data);
   }
 
-  async download(id: number): Promise<any> {
+  private async download(id: number): Promise<any> {
     await this.timeout.wait();
     this.timeout.lock(600);
 
