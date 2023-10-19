@@ -8,7 +8,7 @@ export class World extends Country {
   simplifyFactor = 0.15;
 
   center: [number, number] = [0, 0];
-  zoom = 1;
+  zoom = 2;
 
   regions: CountryRegion[] = [];
 
