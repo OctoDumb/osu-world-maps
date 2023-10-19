@@ -18,6 +18,10 @@ export default abstract class Country {
 
   protected abstract regions: CountryRegion[];
 
+  public getRegions() {
+    return this.regions;
+  }
+
   /**
    * @returns A GeoJSON object Buffer and an SQL query to add
    */

@@ -5,6 +5,7 @@ import zlib from "zlib";
 import getCountries from "../src/countries";
 import Country from "../src/Country";
 import { measureTime } from "../src/util/TimeMeasure";
+import { World } from "../src/World";
 
 const outputPath = path.join(process.cwd(), "out");
 if(!fs.existsSync(outputPath))
@@ -25,7 +26,9 @@ if(!fs.existsSync(localePath))
 const args = process.argv.slice(2);
 
 (async() => {
-  const countries = await getCountries();
+  const manualCountries = await getCountries();
+  const world = new World(manualCountries);
+  const countries = [...manualCountries, world];
   const countriesToBundle: Country[] = args.length ? args.map(code => countries.find(c => c.code == code)!).filter(c => c) : countries;
 
   if(!countriesToBundle.length) {
@@ -67,7 +70,7 @@ const args = process.argv.slice(2);
     fs.writeFileSync(path.join(jsonPath, `${country.code}.json.br`), brotli);
 
     fs.writeFileSync(path.join(localePath, `${country.code}.json`), JSON.stringify(locale, null, "\t"));
-    
+
     if(missingNames.length)
       console.log(`• ⚠ Missing names for ${missingNames.join(', ')}`);
   }
