@@ -5,6 +5,8 @@ import CustomIdModifier from "./modifiers/CustomIdModifier";
 export class World extends Country {
   code = "WORLD";
 
+  simplifyFactor = 0.15;
+
   center: [number, number] = [0, 0];
   zoom = 1;
 
@@ -13,17 +15,11 @@ export class World extends Country {
   constructor(countries: Country[]) {
     super();
 
-    this.setRegions(countries);
-  }
-
-  private setRegions(countries: Country[]) {
-    this.regions = countries.map((c) => {
-      const regions = c.getRegions();
-
-      return new CustomIdModifier(
-        new JoinModifier(regions),
-        c.code
-      );
-    }).flat(1);
+    this.regions = countries.flatMap(
+      country => new CustomIdModifier(
+        new JoinModifier(country.getRegions()),
+        country.code
+      )
+    );
   }
 }
