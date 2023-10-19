@@ -1,4 +1,5 @@
 import Country from "../Country";
+import FlipModifier from "../modifiers/FlipModifier";
 
 export default class NewZealand extends Country {
   code = "NZ";
@@ -10,7 +11,7 @@ export default class NewZealand extends Country {
     2094141, // Auckland
     1790755, // Bay of Plenty
     1640137, // Canterbury
-    2647558, // Chatham Islands
+    new FlipModifier(2647558), // Chatham Islands
     2643819, // Gisborne
     1643811, // Hawke's Bay
     1638992, // Manawatū-Whanganui

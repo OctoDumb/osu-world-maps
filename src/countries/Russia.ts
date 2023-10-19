@@ -1,4 +1,5 @@
 import Country from "../Country";
+import FlipModifier from "../modifiers/FlipModifier";
 import JoinModifier from "../modifiers/JoinModifier";
 
 export default class Russia extends Country {
@@ -19,7 +20,7 @@ export default class Russia extends Country {
     145729, // Buryatia
     109877, // Chechnya
     77687, // Chelyabinsk Oblast
-    151231, // Chukotka Autonomous Okrug
+    new FlipModifier(151231), // Chukotka Autonomous Okrug
     80513, // Chuvashia
     109876, // Dagestan
     253252, // Ingushetia

@@ -1,4 +1,5 @@
 import Country from "../Country";
+import FlipModifier from "../modifiers/FlipModifier";
 
 export default class UnitedStates extends Country {
   code = "US";
@@ -8,7 +9,7 @@ export default class UnitedStates extends Country {
 
   regions = [
     161950, // Alabama
-    1116270, // Alaska
+    new FlipModifier(1116270, true), // Alaska
     162018, // Arizona
     161646, // Arkansas
     165475, // California
