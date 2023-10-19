@@ -23,6 +23,8 @@ const localePath = path.join(outputPath, "locale");
 if(!fs.existsSync(localePath))
   fs.mkdirSync(localePath);
 
+const tempPath = path.join(process.cwd(), "temp");
+
 const args = process.argv.slice(2);
 
 (async() => {
@@ -73,5 +75,13 @@ const args = process.argv.slice(2);
 
     if(missingNames.length)
       console.log(`• ⚠ Missing names for ${missingNames.join(', ')}`);
+  }
+
+  console.log(`🧹 Cleaning up temporary files`);
+
+  let tempFiles = fs.readdirSync(tempPath);
+
+  for(let file of tempFiles) {
+    fs.rmSync(path.join(tempPath, file));
   }
 })();
