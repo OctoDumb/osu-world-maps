@@ -1,4 +1,6 @@
 import Country, { CountryRegion } from "./Country";
+import JoinModifier from "./modifiers/JoinModifier";
+import CustomIdModifier from "./modifiers/CustomIdModifier";
 
 export class World extends Country {
   code = "WORLD";
@@ -15,6 +17,13 @@ export class World extends Country {
   }
 
   private setRegions(countries: Country[]) {
-    this.regions = countries.map((c) => c.getRegions()).flat(1);
+    this.regions = countries.map((c) => {
+      const regions = c.getRegions();
+
+      return new CustomIdModifier(
+        new JoinModifier(regions),
+        c.code
+      );
+    }).flat(1);
   }
 }
