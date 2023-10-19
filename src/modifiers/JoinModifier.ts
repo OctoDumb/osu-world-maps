@@ -8,6 +8,8 @@ import { CountryRegion } from "../Country";
 import { Feature } from "../Nominatim";
 import Mapshaper from "../util/Mapshaper";
 
+import { v4 as uuid } from "uuid";
+
 export default class JoinModifier extends Modifier {
   constructor(
     private regions: CountryRegion[],
@@ -25,14 +27,14 @@ export default class JoinModifier extends Modifier {
 
       features.push(feature);
 
-      let p = path.join(process.cwd(), "temp", `${i+1}.json`);
+      let p = path.join(process.cwd(), "temp", `${uuid()}.json`);
       fs.writeFileSync(p, JSON.stringify(feature));
       paths.push(p);
     }
 
     let base = cloneDeep(features[0]);
 
-    let joinedPath = path.join(process.cwd(), "temp", "joined.json");
+    let joinedPath = path.join(process.cwd(), "temp", `${uuid()}.json`);
 
     let a = await Mapshaper(`-i files=${paths.join(',')} combine-files merge-files -dissolve2 -o ${joinedPath}`);
 

@@ -8,6 +8,8 @@ import NominatimService from "../NominatimService";
 import Mapshaper from "../util/Mapshaper";
 import { cloneDeep } from "lodash";
 
+import { v4 as uuid } from "uuid";
+
 export default class EraseModifier extends Modifier {
   constructor(
     private from: CountryRegion,
@@ -22,13 +24,13 @@ export default class EraseModifier extends Modifier {
 
     let base = cloneDeep(from);
 
-    let fromPath = path.join(process.cwd(), "temp", "1.json");
-    let erasePath = path.join(process.cwd(), "temp", "2.json");
+    let fromPath = path.join(process.cwd(), "temp", `${uuid()}.json`);
+    let erasePath = path.join(process.cwd(), "temp", `${uuid()}.json`);
 
     fs.writeFileSync(fromPath, JSON.stringify(from));
     fs.writeFileSync(erasePath, JSON.stringify(erase));
 
-    let erasedPath = path.join(process.cwd(), "temp", "erased.json");
+    let erasedPath = path.join(process.cwd(), "temp", `${uuid()}.json`);
 
     await Mapshaper(`${fromPath} -erase ${erasePath} -o ${erasedPath}`);
 
