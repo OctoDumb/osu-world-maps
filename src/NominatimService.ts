@@ -6,9 +6,10 @@ import TimeoutLock from "./util/TimeoutLock";
 import Nominatim from "./Nominatim";
 
 // Assuming execution from project's root directory
-const CACHE_PATH = path.join(process.cwd(), "cache");
+const DEFAULT_CACHE_PATH = path.join(process.cwd(), "cache");
 
 export default class NominatimService {
+  private cache_path: string;
   private cached: number[];
 
   private timeout = new TimeoutLock();
@@ -23,7 +24,9 @@ export default class NominatimService {
     return this._instance;
   }
 
-  constructor(path: string = CACHE_PATH) {
+  constructor(path: string = DEFAULT_CACHE_PATH) {
+    this.cache_path = path;
+    
     if(!fs.existsSync(path))
       fs.mkdirSync(path);
 
@@ -32,7 +35,7 @@ export default class NominatimService {
 
   async get(id: number): Promise<Nominatim> {
     if(this.cached.includes(id)) {
-      return new Nominatim(JSON.parse(fs.readFileSync(path.join(CACHE_PATH, `${id}.json`)).toString()));
+      return new Nominatim(JSON.parse(fs.readFileSync(path.join(this.cache_path, `${id}.json`)).toString()));
     }
 
     const data = await this.download(id);
@@ -50,7 +53,7 @@ export default class NominatimService {
       responseType: "json",
     });
 
-    fs.writeFileSync(path.join(CACHE_PATH, `${id}.json`), JSON.stringify(data, null, "\t"));
+    fs.writeFileSync(path.join(this.cache_path, `${id}.json`), JSON.stringify(data, null, "\t"));
 
     this.cached.push(id);
 
