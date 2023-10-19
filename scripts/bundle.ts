@@ -67,7 +67,8 @@ const args = process.argv.slice(2);
     fs.writeFileSync(path.join(jsonPath, `${country.code}.json.br`), brotli);
 
     fs.writeFileSync(path.join(localePath, `${country.code}.json`), JSON.stringify(locale, null, "\t"));
+    
     if(missingNames.length)
-    console.log(`• ⚠ Missing names for ${missingNames.join(', ')}`);
+      console.log(`• ⚠ Missing names for ${missingNames.join(', ')}`);
   }
 })();

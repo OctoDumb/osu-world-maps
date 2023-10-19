@@ -147,5 +147,5 @@ export default class Turkey extends Country {
       ),
       "Black Sea Region"
     ),
-  ];
+    ];
 }

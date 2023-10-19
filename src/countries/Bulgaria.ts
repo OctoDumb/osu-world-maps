@@ -34,6 +34,6 @@ export default class Bulgaria extends Country {
     1739544, // Targovishte
     1739545, // Haskovo
     1739546, // Shumen
-    1739547, // Yambol
+1739547, // Yambol
   ];
 }

@@ -7,10 +7,10 @@ export default class Singapore extends Country {
   zoom = 11;
 
   regions = [
-		3831712, // Central Singapore
-		3831713, // North East
-		3831714, // North West
-		3831715, // South East
-		3831716, // South West
+    3831712, // Central Singapore
+    3831713, // North East
+    3831714, // North West
+    3831715, // South East
+    3831716, // South West
   ];
 }
