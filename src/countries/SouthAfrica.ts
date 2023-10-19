@@ -3,7 +3,7 @@ import Country from "../Country";
 export default class SouthAfrica extends Country {
   code = "ZA";
 
-  center: [number, number] = [-28.9, 21];
+  center: [number, number] = [-29, 24];
   zoom = 6;
 
   regions = [
