@@ -5,7 +5,7 @@ import EraseModifier from "../modifiers/EraseModifier";
 import JoinModifier from "../modifiers/JoinModifier";
 
 export default class UnitedKingdom extends Country {
-  code = "UK";
+  code = "GB";
 
   center: [number, number] = [55.4, -3.9];
   zoom = 6;
