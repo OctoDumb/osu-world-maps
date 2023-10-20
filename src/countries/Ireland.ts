@@ -1,7 +1,7 @@
 import Country from "../Country";
 
 export default class Ireland extends Country {
-  code = "IR";
+  code = "IE";
 
   center: [number, number] = [53.4, -8.2];
   zoom = 7;
