@@ -43,17 +43,30 @@
       margin: 0 0 5px;
       color: #777;
     }
+
+    img {
+      position: absolute;
+      width: 70px;
+      top: 0;
+      left: 10px;
+
+      z-index: 1000;
+    }
   </style>
 </head>
 <body>
   <div id="map"></div>
+  <img src="https://osuflags.omkserver.nl/RU.png" alt="">
 </body>
 <script>
     const country = location.search.slice(1);
 
+    document.querySelector("img").src = `https://osuflags.omkserver.nl/${country}.png`;
+
     var map = L.map('map', {
       center: [0, 0],
       zoom: 4,
+      zoomControl: false,
     });
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       minZoom: 2,
