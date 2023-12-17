@@ -16,15 +16,15 @@ export default class Somalia extends Country {
     1720057, // Gedo
     1720058, // Hiiraan
     1720061, // Jubbada Dhexe
-	1720059, // Jubbada Hoose
-	1720063, // Mudug
-	1720064, // Nugaal 
-	13316065, // Sahil 
-	1720065, // Sanaag 
-	1720062, // Shabeellaha Dhexe 
-	1720060, // Shabeellaha Hoose 
-	1720066, // Sool
-	1720067, // Togdheer	
-	1720068, // Woqooyi Galbeed
+    1720059, // Jubbada Hoose
+    1720063, // Mudug
+    1720064, // Nugaal 
+    13316065, // Sahil 
+    1720065, // Sanaag 
+    1720062, // Shabeellaha Dhexe 
+    1720060, // Shabeellaha Hoose 
+    1720066, // Sool
+    1720067, // Togdheer	
+    1720068, // Woqooyi Galbeed
   ];
 }
