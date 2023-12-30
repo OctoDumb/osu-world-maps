@@ -1,6 +1,6 @@
 import Country from "../Country";
 
-export default class CapeVerde extends Country {
+export default class CaboVerde extends Country {
   code = "CV";
 
   center: [number, number] = [16.1, -24];  
