@@ -1,4 +1,5 @@
 import Country from "../Country";
+import CustomIdModifier from "../modifiers/CustomIdModifier";
 
 export default class Georgia extends Country {
   code = "GE";
@@ -19,7 +20,7 @@ export default class Georgia extends Country {
     1996076, // Samegrelo-Zemo Svaneti
     1996031, // Samtskhe-Javakheti
     2000040, // Shida Kartli
-    1152717, // South Ossetia
+    new CustomIdModifier(1152717, "GE-SO"), // South Ossetia
   ];
 }
 
