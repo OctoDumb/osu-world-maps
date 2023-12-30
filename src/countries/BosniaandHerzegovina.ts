@@ -7,9 +7,9 @@ export default class BosniaandHerzegovina extends Country {
   zoom = 8;
 
   regions = [
-	2528144, // Federation of Bosnia and Herzegovina
-	2528145, // Republic of Srpska
-	2528143, // Brčko District
+    2528144, // Federation of Bosnia and Herzegovina
+    2528145, // Republic of Srpska
+    2528143, // Brčko District
   ];
 }
 

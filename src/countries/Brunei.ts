@@ -7,10 +7,10 @@ export default class Brunei extends Country {
   zoom = 9;
 
   regions = [
-	3853884, // Belait
-	3853885, // Brunei-Muara 
-	7843853, // Temburong
-	3853886, // Tutong
+    3853884, // Belait
+    3853885, // Brunei-Muara 
+    7843853, // Temburong
+    3853886, // Tutong
   ];
 }
 

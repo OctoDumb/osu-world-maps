@@ -7,14 +7,14 @@ export default class Bangladesh extends Country {
   zoom = 7;
 
   regions = [
-	3921298, // Barisal
-	3824588, // Chattogram
-	3921322, // Dhaka
-	3825003, // Khulna
-	7318343, // Mymensingh
-	3859335, // Rajshahi
-	3921211, // Rangpur
-	3921222, // Sylhet
+    3921298, // Barisal
+    3824588, // Chattogram
+    3921322, // Dhaka
+    3825003, // Khulna
+    7318343, // Mymensingh
+    3859335, // Rajshahi
+    3921211, // Rangpur
+    3921222, // Sylhet
   ];
 }
 

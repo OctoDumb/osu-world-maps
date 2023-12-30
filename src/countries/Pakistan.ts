@@ -7,13 +7,13 @@ export default class Pakistan extends Country {
   zoom = 6;
 
   regions = [
-	3780130, // Azad Jammu and Kashmir
-	357968, // Balochistan
-	357995, // Gilgit-Baltistan
-	358002, // Islamabad Capital Territory
-	3780131, // Khyber Pakhtunkhwa
-	357988, // Punjab
-	357981, // Sindh
+    3780130, // Azad Jammu and Kashmir
+    357968, // Balochistan
+    357995, // Gilgit-Baltistan
+    358002, // Islamabad Capital Territory
+    3780131, // Khyber Pakhtunkhwa
+    357988, // Punjab
+    357981, // Sindh
   ];
 }
 

@@ -7,13 +7,13 @@ export default class Nepal extends Country {
   zoom = 7;
 
   regions = [
-	10489132, // Koshi
-	10489318, // Madhesh
-	10489317, // Bagmati
-	10489605, // Gandaki
-	10493722, // Lumbini
-	10493723, // Karnali
-	10488187, // Sudurpashchim
+    10489132, // Koshi
+    10489318, // Madhesh
+    10489317, // Bagmati
+    10489605, // Gandaki
+    10493722, // Lumbini
+    10493723, // Karnali
+    10488187, // Sudurpashchim
   ];
 }
 

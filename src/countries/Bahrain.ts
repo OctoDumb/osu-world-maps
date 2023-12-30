@@ -7,10 +7,10 @@ export default class Bahrain extends Country {
   zoom = 10;
 
   regions = [
-	3028094, // Capital Governorate
-	2522430, // Southern Governorate
-	3028095, // Muharraq Governorate
-	2522303, // Northern Governorate
+    3028094, // Capital Governorate
+    2522430, // Southern Governorate
+    3028095, // Muharraq Governorate
+    2522303, // Northern Governorate
   ];
 }
 

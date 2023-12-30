@@ -7,12 +7,12 @@ export default class Kuwait extends Country {
   zoom = 9;
 
   regions = [
-	4579477, // Ahmadi
-	4579478, // Al-Asimah
-	4579479, // Farwaniya
-	4579480, // Hawalli
-	4579481, // Jahra
-	4579482, // Mubarak Al-Kabeer
+    4579477, // Ahmadi
+    4579478, // Al-Asimah
+    4579479, // Farwaniya
+    4579480, // Hawalli
+    4579481, // Jahra
+    4579482, // Mubarak Al-Kabeer
   ];
 }
 
