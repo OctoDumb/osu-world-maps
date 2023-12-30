@@ -1,4 +1,5 @@
 import Country from "../Country";
+import CustomIdModifier from "../modifiers/CustomIdModifier";
 
 export default class Somalia extends Country {
   code = "SO";
@@ -19,7 +20,7 @@ export default class Somalia extends Country {
     1720059, // Jubbada Hoose
     1720063, // Mudug
     1720064, // Nugaal 
-    13316065, // Sahil 
+    new CustomIdModifier(13316065, "SO-SX"), // Sahil 
     1720065, // Sanaag 
     1720062, // Shabeellaha Dhexe 
     1720060, // Shabeellaha Hoose 
