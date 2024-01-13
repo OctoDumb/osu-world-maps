@@ -2,6 +2,9 @@ import { Modifier } from "./Modifier";
 import { CountryRegion } from "../Country";
 import { Feature } from "../Nominatim";
 
+/**
+ * Assigns a custom name to a {@link CountryRegion}
+ */
 export default class CustomNameModifier extends Modifier {
   constructor(
     private region: CountryRegion,

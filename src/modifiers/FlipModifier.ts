@@ -7,6 +7,11 @@ import { Modifier } from "./Modifier";
 import { v4 as uuid } from "uuid";
 import Mapshaper from "../util/Mapshaper";
 
+/**
+ * Moves a {@link CountryRegion} to the other side of the globe.
+ * 
+ * Used for situations, when a region is separated by the {@link https://en.wikipedia.org/wiki/180th_meridian |180th meridian}
+ */
 export default class FlipModifier extends Modifier {
   constructor(
     private region: CountryRegion,
