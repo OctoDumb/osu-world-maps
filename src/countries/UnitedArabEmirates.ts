@@ -3,8 +3,8 @@ import Country from "../Country";
 export default class UnitedArabEmirates extends Country {
   code = "AE";
 
-  center: [number, number] = [24.6, 53.9]; 
-  zoom = 7;
+  center: [number, number] = [24.5, 54];
+  zoom = 8;
 
   regions = [
     3766482, // Ajman

@@ -4,7 +4,7 @@ export default class Iraq extends Country {
   code = "IQ"
   
   center: [number, number] = [33.3, 44];
-  zoom = 6;
+  zoom = 7;
 
   regions = [
     3242292, // Al Anbar Governorate

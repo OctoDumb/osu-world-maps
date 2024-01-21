@@ -3,8 +3,8 @@ import Country from "../Country";
 export default class Guatemala extends Country {
   code = "GT";
 
-  center: [number, number] = [15.5, -90.3];
-  zoom = 7;
+  center: [number, number] = [15.7, -90.5];
+  zoom = 8;
 
   regions = [
     214704, // Guatemala Department

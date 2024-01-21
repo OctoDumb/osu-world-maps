@@ -3,8 +3,8 @@ import Country from "../Country";
 export default class Tunisia extends Country {
   code = "TN";
 
-  center: [number, number] = [34, 9.6];
-  zoom = 6;
+  center: [number, number] = [34.2, 9.5];
+  zoom = 7;
 
   regions = [
     1435833, // Béja

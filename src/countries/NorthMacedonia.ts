@@ -4,8 +4,8 @@ import CustomIdModifier from "../modifiers/CustomIdModifier";
 export default class NorthMacedonia extends Country {
   code = "MK"
   
-  center: [number, number] = [41.6, 21.5];
-  zoom = 8;
+  center: [number, number] = [41.6, 21.8];
+  zoom = 9;
 
   regions = [
     new CustomIdModifier(2572311, "MK-MK001"), // Vardar

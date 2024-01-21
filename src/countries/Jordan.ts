@@ -3,8 +3,8 @@ import Country from "../Country";
 export default class Jordan extends Country {
   code = "JO";
 
-  center: [number, number] = [31.4, 36.8];
-  zoom = 7;
+  center: [number, number] = [31.3, 36.7];
+  zoom = 8;
 
   regions = [
     2925616, // Ajloun Governate

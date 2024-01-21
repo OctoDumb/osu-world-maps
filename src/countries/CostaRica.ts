@@ -3,7 +3,7 @@ import Country from "../Country";
 export default class CostaRica extends Country {
   code = "CR";
 
-  center: [number, number] = [9.7, -84.1];
+  center: [number, number] = [9.4, -84.5];
   zoom = 8;
 
   regions = [

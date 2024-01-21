@@ -3,8 +3,8 @@ import Country from "../Country";
 export default class Morocco extends Country {
   code = "MA";
 
-  center: [number, number] = [29.2, -9.9];  
-  zoom = 5;
+  center: [number, number] = [29.7, -10];
+  zoom = 6;
 
   regions = [
     4734547, // Béni Mellal-Khénifra

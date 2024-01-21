@@ -3,8 +3,8 @@ import Country from "../Country";
 export default class Paraguay extends Country {
   code = "PY";
 
-  center: [number, number] = [-23.8, -56.9];
-  zoom = 6;
+  center: [number, number] = [-23.4, -58.4];
+  zoom = 7;
 
   regions = [
     3654543, // Asunción

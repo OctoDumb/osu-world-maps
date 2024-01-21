@@ -3,7 +3,7 @@ import Country from "../Country";
 export default class Albania extends Country {
   code = "AL";
 
-  center: [number, number] = [41.2, 20.2];
+  center: [number, number] = [41.1, 20];
   zoom = 8;
 
   regions = [

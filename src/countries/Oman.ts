@@ -3,7 +3,7 @@ import Country from "../Country";
 export default class Oman extends Country {
   code = "OM";
 
-  center: [number, number] = [22.2, 56.4];
+  center: [number, number] = [21.7, 56];
   zoom = 7;
 
   regions = [

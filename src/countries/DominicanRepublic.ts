@@ -3,8 +3,8 @@ import Country from "../Country";
 export default class DominicanRepublic extends Country {
   code = "DO";
 
-  center: [number, number] = [19, -70.7];
-  zoom = 8;
+  center: [number, number] = [18.8, -70.3];
+  zoom = 9;
 
   regions = [
     53161, // Distrito Nacional

@@ -3,8 +3,8 @@ import Country from "../Country";
 export default class Algeria extends Country {
   code = "DZ";
 
-  center: [number, number] = [27.6, 1.2];
-  zoom = 5;
+  center: [number, number] = [28.4, 2.5];
+  zoom = 6;
 
   regions = [
     1258650, // Adrar

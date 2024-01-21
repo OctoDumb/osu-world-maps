@@ -4,7 +4,7 @@ export default class Brunei extends Country {
   code = "BN";
 
   center: [number, number] = [4.6, 114.7];
-  zoom = 9;
+  zoom = 10;
 
   regions = [
     3853884, // Belait

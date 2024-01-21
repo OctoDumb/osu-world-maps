@@ -3,7 +3,7 @@ import Country from "../Country";
 export default class Angola extends Country {
   code = "AO";
 
-  center: [number, number] = [-11.3, 19];
+  center: [number, number] = [-12.2, 17.1];
   zoom = 6;
 
   regions = [

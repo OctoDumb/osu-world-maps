@@ -1,6 +1,5 @@
 import Country from "../Country";
 import JoinModifier from "../modifiers/JoinModifier";
-import CustomIdModifier from "../modifiers/CustomIdModifier";
 import CustomNameModifier from "../modifiers/CustomNameModifier";
 
 export default class Uzbekistan extends Country {
@@ -22,17 +21,13 @@ export default class Uzbekistan extends Country {
     196253, // Sirdaryo
     196248, // Surxondaryo
     2216724, // Toshkent
-	196242, // Xorazm
-	
-	new CustomNameModifier(
-      new CustomIdModifier(
-        new JoinModifier([
-          196251, // Toshkent Reigon
-          5745852, // Angren
-        ]),
-        "UZ-TOA"
-      ),
-      "Toshkent Reigon"
+    196242, // Xorazm
+    new CustomNameModifier(
+      new JoinModifier([
+        196251, // Toshkent Reigon
+        5745852, // Angren
+      ]),
+      "Toshkent Region"
     ),
   ];
 }

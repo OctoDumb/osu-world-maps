@@ -3,8 +3,8 @@ import Country from "../Country";
 export default class Cambodia extends Country {
   code = "KH";
 
-  center: [number, number] = [12.5, 105.5];
-  zoom = 7;
+  center: [number, number] = [12.1, 104.8];
+  zoom = 8;
 
   regions = [
     2199033, // Phnom Penh

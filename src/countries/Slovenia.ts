@@ -4,8 +4,8 @@ import CustomIdModifier from "../modifiers/CustomIdModifier";
 export default class Slovenia extends Country {
   code = "SI";
 
-  center: [number, number] = [46, 14.7]; 
-  zoom = 8;
+  center: [number, number] = [46.1, 14.8];
+  zoom = 9;
 
   regions = [
     new CustomIdModifier(1703918, "SI-SI022"), // Upper Carniola

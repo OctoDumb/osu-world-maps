@@ -3,8 +3,8 @@ import Country from "../Country";
 export default class Myanmar extends Country {
   code = "MM";
 
-  center: [number, number] = [19.3, 97.1];
-  zoom = 5;
+  center: [number, number] = [18.9, 96.4];
+  zoom = 6;
 
   regions = [
     5996473, // Ayeyarwady

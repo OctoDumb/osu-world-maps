@@ -4,7 +4,7 @@ export default class Luxembourg extends Country {
   code = "LU";
 
   center: [number, number] = [49.8, 6.1];
-  zoom = 9;
+  zoom = 10;
 
   regions = [
     407813, // Capellen

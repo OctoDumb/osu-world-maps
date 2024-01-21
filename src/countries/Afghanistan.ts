@@ -3,8 +3,8 @@ import Country from "../Country";
 export default class Afghanistan extends Country {
   code = "AF";
 
-  center: [number, number] = [33.5, 64.8];
-  zoom = 6;
+  center: [number, number] = [34, 67.1];
+  zoom = 7;
 
   regions = [
     1674535, // Badakhshan Province
