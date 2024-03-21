@@ -13,10 +13,22 @@ export default class Norway extends Country {
     408105, // Nordland
     406091, // Oslo
     405836, // Rogaland
-    10155507, // Troms og Finnmark
+
+    // Replacing Troms og Finnmark
+    407717, // Troms
+    406389, // Finnmark
+
     406567, // Trøndelag
-    10487008, // Vestfold og Telemark
+
+    // Replacing Vestfold og Telemark
+    404589, // Vestfold
+    405156, // Telemark
+
     10155543, // Vestland
-    10155539, // Viken
+
+    // Replacing Viken
+    412297, // Buskerud
+    406106, // Akershus 
+    406060, // Østfold
   ];
 }

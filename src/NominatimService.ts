@@ -45,12 +45,15 @@ export default class NominatimService {
 
   private async download(id: number): Promise<any> {
     await this.timeout.wait();
-    this.timeout.lock(600);
+    this.timeout.lock(1300);
 
     console.log(`Downloading R${id}`);
 
     let { data } = await axios.get(`https://nominatim.openstreetmap.org/details?osmtype=R&osmid=${id}&polygon_geojson=1&format=json`, {
       responseType: "json",
+      headers: {
+        "User-Agent": "osu! World",
+      },
     });
 
     fs.writeFileSync(path.join(this.cache_path, `${id}.json`), JSON.stringify(data, null, "\t"));

@@ -10,6 +10,9 @@ import { cloneDeep } from "lodash";
 
 import { v4 as uuid } from "uuid";
 
+/**
+ * Erases a part of a {@link CountryRegion}, using {@param erase} as a mask
+ */
 export default class EraseModifier extends Modifier {
   constructor(
     private from: CountryRegion,

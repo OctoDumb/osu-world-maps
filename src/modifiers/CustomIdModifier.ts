@@ -2,6 +2,9 @@ import { Modifier } from ".";
 import { CountryRegion } from "../Country";
 import { Feature } from "../Nominatim";
 
+/**
+ * Assigns a custom ID value to a {@link CountryRegion}
+ */
 export default class CustomIdModifier extends Modifier {
   constructor(
     private region: CountryRegion,

@@ -10,6 +10,11 @@ import Mapshaper from "../util/Mapshaper";
 
 import { v4 as uuid } from "uuid";
 
+/**
+ * Merges multiple {@link CountryRegion}s
+ * 
+ * All properties, including ID and name, are inherited from the first {@link CountryRegion}
+ */
 export default class JoinModifier extends Modifier {
   constructor(
     private regions: CountryRegion[],
