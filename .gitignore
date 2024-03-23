@@ -5,4 +5,3 @@ out/
 temp/
 test.*
 *.sql
-package-lock.json
