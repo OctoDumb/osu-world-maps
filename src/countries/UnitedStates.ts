@@ -1,4 +1,5 @@
 import Country from "../Country";
+import CustomIdModifier from "../modifiers/CustomIdModifier";
 import FlipModifier from "../modifiers/FlipModifier";
 
 export default class UnitedStates extends Country {
@@ -54,7 +55,7 @@ export default class UnitedStates extends Country {
     161993, // Utah
     60759, // Vermont
     224042, // Virginia
-    5396194, // Washington
+    new CustomIdModifier(5396194, "US-WADC"), // Washington
     165479, // Washington
     162068, // West Virginia
     165466, // Wisconsin
