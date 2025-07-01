@@ -4,8 +4,8 @@ import JoinModifier from "../modifiers/JoinModifier";
 export default class Belarus extends Country {
   code = "BY";
 
-  center: [number, number] = [0, 0];
-  zoom = 6;
+  center: [number, number] = [53.6, 28.1];
+  zoom = 7;
 
   regions = [
     59189, // Brest Region
