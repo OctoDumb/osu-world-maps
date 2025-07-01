@@ -33,14 +33,15 @@ export default class NominatimService {
     this.cached = fs.readdirSync(path).map(f => Number(f.split(".")[0]));
   }
 
-  async get(id: number): Promise<Nominatim> {
-    if(this.cached.includes(id)) {
-      return new Nominatim(JSON.parse(fs.readFileSync(path.join(this.cache_path, `${id}.json`)).toString()));
+  async get(id: number, cached: boolean = true): Promise<Nominatim> {
+    if(this.cached.includes(id) && cached) {
+      let data = JSON.parse(fs.readFileSync(path.join(this.cache_path, `${id}.json`)).toString());
+      return new Nominatim(id, data);
     }
 
     const data = await this.download(id);
 
-    return new Nominatim(data);
+    return new Nominatim(id, data);
   }
 
   private async download(id: number): Promise<any> {

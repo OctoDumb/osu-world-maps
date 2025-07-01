@@ -27,6 +27,15 @@ const tempPath = path.join(process.cwd(), "temp");
 
 const args = process.argv.slice(2);
 
+const options = {
+  noCache: false,
+};
+
+if (args[0] == "--no-cache") {
+  options.noCache = true;
+  args.shift();
+}
+
 (async() => {
   const manualCountries = await getCountries();
   const world = new World(manualCountries);
@@ -44,7 +53,7 @@ const args = process.argv.slice(2);
     let missingNames: string[] = [];
 
     const [processingDuration, [data, sql]] = await measureTime(async () => {
-      let [data, sql] = await country.bundle();
+      let [data, sql] = await country.bundle(!options.noCache);
       let json: any = JSON.parse(data.toString());
 
       for (let feature of json.features) {

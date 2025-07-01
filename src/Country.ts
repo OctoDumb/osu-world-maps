@@ -25,7 +25,7 @@ export default abstract class Country {
   /**
    * @returns A GeoJSON object Buffer and an SQL query to add
    */
-  async bundle(): Promise<[Buffer, string]> {
+  async bundle(cached: boolean = true): Promise<[Buffer, string]> {
     if(!fs.existsSync(path.join(process.cwd(), "temp")))
       fs.mkdirSync(path.join(process.cwd(), "temp"));
 
@@ -39,7 +39,7 @@ export default abstract class Country {
     for(let region of this.regions) {
       let feature: Feature;
       if(typeof region == "number") {
-        let nominatim = await provider.get(region);
+        let nominatim = await provider.get(region, cached);
         feature = nominatim.toFeature();
       } else {
         feature = await region.build();
