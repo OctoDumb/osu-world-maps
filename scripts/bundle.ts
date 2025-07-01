@@ -47,7 +47,7 @@ if (args[0] == "--no-cache") {
   }
 
   for(let country of countriesToBundle) {
-    console.log(`🔍 Bundling ${country.constructor.name} [${country.code}]`);
+    console.log(`🔍 Bundling ${country.constructor.name} [${country.code}] (${country.getRegions().length} regions)`);
 
     let locale: any = {};
     let missingNames: string[] = [];
