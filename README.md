@@ -18,7 +18,8 @@ You are welcome to help us by contributing new countries. Just keep in mind that
 
 ##### Testing
 
-1. Bundle the country with `npm run bundle <code>`
+1. Bundle the country with `npm run bundle -- <code(s)>`
+    * To redownload region JSONs use `npm run bundle -- --no-cache <code(s)>`
 2. Start the server with `npm run serve`
 3. Open `http://localhost:7891/?<code>`
 
