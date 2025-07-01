@@ -73,9 +73,11 @@
     }).addTo(map);
 
     document.addEventListener("keypress", ev => {
-      if(ev.repeat) return;
-      const center = map.getCenter();
-      navigator.clipboard.writeText(`center: [number, number] = [${Math.round(center.lat * 10) / 10}, ${Math.round(center.lng * 10) / 10}];\nzoom = ${map.getZoom()};`);
+      if (ev.repeat) return;
+      if (ev.code == "KeyC") {
+        const center = map.getCenter();
+        navigator.clipboard.writeText(`center: [number, number] = [${Math.round(center.lat * 10) / 10}, ${Math.round(center.lng * 10) / 10}];\n\tzoom = ${map.getZoom()};`);
+      }
     });
 
     var info = L.control();
@@ -88,9 +90,9 @@
 
     info.update = function(props) {
       if(props)
-        this._div.innerHTML = `${props.id} - ${props.name}`;
+        this._div.innerHTML = `R${props.nominatim}<br>${props.id} - ${props.name}`;
       else
-        this._div.innerHTML = `<h5>Hover over a region</h5>`;
+        this._div.innerHTML = `<b>Hover over a region</b><br><b>Right click to remove</b>`;
     }
 
     info.addTo(map);
@@ -127,7 +129,10 @@
               },
               click: (e) => {
                 map.fitBounds(e.target.getBounds());
-              }
+              },
+              contextmenu: (e) => {
+                l.remove();
+              },
             });
           },
         });
