@@ -28,12 +28,16 @@ const tempPath = path.join(process.cwd(), "temp");
 const args = process.argv.slice(2);
 
 const options = {
-  noCache: false,
+  no_cache: false,
+  print: false,
 };
 
-if (args[0] == "--no-cache") {
-  options.noCache = true;
-  args.shift();
+while (args[0].startsWith("--")) {
+  let option = args.shift()!.slice(2).replace(/-/g, '_') as keyof typeof options;
+  if (!Object.keys(options).includes(option)) {
+    throw new Error("Unknown parameter");
+  }
+  options[option] = true;
 }
 
 (async() => {
@@ -53,10 +57,14 @@ if (args[0] == "--no-cache") {
     let missingNames: string[] = [];
 
     const [processingDuration, [data, sql]] = await measureTime(async () => {
-      let [data, sql] = await country.bundle(!options.noCache);
+      let [data, sql] = await country.bundle(!options.no_cache);
       let json: any = JSON.parse(data.toString());
 
       for (let feature of json.features) {
+        if (options.print) {
+          console.log(`${feature.properties.id} - ${feature.properties.name}`);
+        }
+
         if(!feature.properties.name) {
           missingNames.push(feature.properties.id);
         } else {
