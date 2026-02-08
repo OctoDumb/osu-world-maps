@@ -23,15 +23,7 @@ export default class Panama extends Country {
     5740664, // Panamá Oeste
     5740657, // Emberá-Wounaan 
     13458933, // Naso Tjër Di
-	   new CustomNameModifier(
-      new EraseModifier(
-        new JoinModifier([
-          5740666,
-        ]),
-        5740663
-      ),
-      "Veraguas"
-    ),
+    5740666, // Veraguas
   ];
 }
 
