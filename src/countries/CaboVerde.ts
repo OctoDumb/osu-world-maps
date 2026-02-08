@@ -18,8 +18,7 @@ export default class CaboVerde extends Country {
     3830196, // Brava
     3830197, // Maio
     3830195, // Boa Vista
-    
-	new CustomNameModifier(
+    new CustomNameModifier(
       new CustomIdModifier(
         new JoinModifier([
           6929737, // São Nicolau
