@@ -1,4 +1,5 @@
 import Country from "../Country";
+import CustomNameModifier from "../modifiers/CustomNameModifier";
 
 export default class Egypt extends Country {
   code = "EG";
@@ -9,7 +10,7 @@ export default class Egypt extends Country {
   regions = [
     4103403, // Dakahlia
     3061758, // Red Sea
-    3824513, // Beheira 
+    new CustomNameModifier(3824513, "Baheira"), // Baheira 
     3726124, // Faiyum
     3584607, // Gharbia
     3061846, // Alexandria
